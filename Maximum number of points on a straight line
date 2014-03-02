@@ -1,0 +1,52 @@
+//Given n points in a plane, we need to report the maximum number of points that lie on the same straight line. 
+
+
+public class MaxPoints {
+    public int maxPoints(Point[] points) {
+        if(points.length==0 ||points == null) return 0;
+        
+        int max = 1;// If there is only one point in the list, return 1; 
+        
+        HashMap<Double, Integer> map = new HashMap<Double, Integer>();
+        
+        //for each point in the list, calculate the max number of points on the same line through that point 
+        for(int i = 0; i<points.length; i++){
+            map.clear();
+            map.put((double)Integer.MIN_VALUE, 1);// add the dummy value here, if all the points are the same, need to be counted. 1 here serve as the basis of hte anchor point itself. 
+            int duplicate = 0;
+            
+            //Only need to calculate the points in the rest of the list, because if the max points line goes through the point and any of its previous points, the calculation must have been done already. (covered in previous calculations)
+            for(int j = i+1; j<points.length; j++){
+                if(points[i].x == points[j].x && points[i].y == points[j].y){// if two points are the same, their slope can't be calculated
+                    duplicate++;
+                    continue;
+                }
+                
+                double k = (points[i].x-points[j].x == 0)? Integer.MAX_VALUE: 0.0+(double)(points[i].y-points[j].y)/(points[i].x - points[j].x); //There is a 0.0 adjustment, in java (double)0/-3 = -0.0 , need to add 0.0 to correct this
+                if(map.containsKey(k)){
+                    map.put(k, map.get(k)+1);
+                }else{
+                    map.put(k,2);//put 2 here means the anchor point itself + the point in the same line
+                }
+                
+                
+            }
+            
+            for(int count: map.values()){
+                    if(count+duplicate>max){
+                        max = count + duplicate;
+                    }
+                }
+        }
+        
+        return max; 
+        
+    }
+    
+    class Point {
+       int x;
+       int y;
+       Point() { x = 0; y = 0; }
+       Point(int a, int b) { x = a; y = b; }
+  }
+}
