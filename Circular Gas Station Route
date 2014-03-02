@@ -6,7 +6,7 @@ public int gasStation(int[] gas, int[] cost) {
         for(i = 0; i<size; i++ ){
             int save = 0; 
             int position = i; 
-            boolean flag = false; 
+            boolean flag = false; // Flag represents if we have iterated through the end of the list 
             
             while(true){
                 save = save + gas[position]-cost[position];
