@@ -1,0 +1,36 @@
+public int gasStation(int[] gas, int[] cost) {
+        int size = gas.length;
+        int i;
+        for(i = 0; i<size; i++ ){
+            int save = 0; 
+            int position = i; 
+            boolean flag = false; 
+            
+            while(true){
+                save = save + gas[position]-cost[position];
+                
+                if(save<0){
+                    if(flag==true){
+                        return -1;
+                    }else{
+                        if(i==size-1) return -1; 
+                        i = position+1;
+                        break; 
+                    }
+                       
+                }else{
+                    if(flag == true && position>=i){
+                        return i;
+                    }else if(flag == false && position == size-1){
+                        flag = true;
+                        position = 0; 
+                    }else{
+                        position++;
+                    }
+                }
+            }
+        }
+        
+        return i; 
+        
+    }
