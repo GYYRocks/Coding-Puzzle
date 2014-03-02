@@ -1,0 +1,29 @@
+//Given an infinite number of quarters, dimes, nickels, and pennies, calculate the number of ways of representing n cents
+
+public class cents {
+	int[] denom = {25,10,5,1};
+	
+	public int count =0;
+	public cents(){
+	}
+	
+	public int change(int remaining, int index){
+
+		if(index == denom.length-1){
+			count++;
+			return 1;
+		}
+		
+		// way should not be declared as class variable; or we can only define class variable count, count the number of time of we enter the base case
+		int way = 0;
+		for(int i = 0; denom[index]*i<=remaining; i++){
+			way += change(remaining-denom[index]*i, index+1);
+			System.out.println(way);
+		}
+		System.out.println();
+		
+		return way;
+		
+		
+		
+	}
