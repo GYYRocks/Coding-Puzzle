@@ -1,3 +1,5 @@
+// you have a truck that is moving around a circular track with gas stations spaced out at some distance between them. Each station has a finite amount of gas, the distance between the gas stations requires a certain amount of gas to traverse and you can only move in one direction. What is the algorithm to use, which gas station to start, so that you can move around the whole gas station?
+
 public int gasStation(int[] gas, int[] cost) {
         int size = gas.length;
         int i;
