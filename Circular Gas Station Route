@@ -1,12 +1,12 @@
 // you have a truck that is moving around a circular track with gas stations spaced out at some distance between them. Each station has a finite amount of gas, the distance between the gas stations requires a certain amount of gas to traverse and you can only move in one direction. What is the algorithm to use, which gas station to start, so that you can move around the whole gas station?
 
 public int gasStation(int[] gas, int[] cost) {
-        int size = gas.length;
+                int size = gas.length;
         int i;
-        for(i = 0; i<size; i++ ){
+        for(i = 0; i<size; ){
             int save = 0; 
             int position = i; 
-            boolean flag = false; // Flag represents if we have iterated through the end of the list 
+            boolean flag = false; 
             
             while(true){
                 save = save + gas[position]-cost[position];
@@ -15,8 +15,8 @@ public int gasStation(int[] gas, int[] cost) {
                     if(flag==true){
                         return -1;
                     }else{
-                        if(i==size-1) return -1; 
-                        i = position+1;
+                        if(i==size-1||position==size-1) return -1; //starting from the last index or had to start out of the array range
+                        i = position+1; // start from the next index
                         break; 
                     }
                        
