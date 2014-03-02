@@ -1,0 +1,22 @@
+//Starts from the first index of an array, each element in the array represents maximum jump length from that index, determine the minimum number of jumps to the end of the array
+
+public class JumpGame {
+    public int jump(int[] A) {
+        
+        int count =0;
+        int last = A.length-1;
+        
+        //Greedy algorithm, ensures each jump the optimal 
+        while(last>0){
+            for(int i = 0; i<last; i++){
+                if(A[i]+i>=last){
+                    last=i;
+                    count++;
+                    break;
+                }
+            }
+        }
+        
+        return count; 
+    }
+}
